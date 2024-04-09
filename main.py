@@ -87,6 +87,7 @@ for k in range(num_k):
     Pua[:, :, k] = KFa.Pu
 
 # plot
+plt.rcParams.update({'font.size': 22})
 sig_q1 = np.sqrt(Pua[0,0,:])
 plt.figure()
 plt.plot(tsim, xua[0, :], label='Estimated Position', linewidth=2)
@@ -94,10 +95,11 @@ plt.fill_between(tsim, xua[0,:] - 2*sig_q1, xua[0,:] + 2*sig_q1, label=r"$2\sigm
 plt.plot(tsim, X_noisy[0, :], label='True Position', linewidth=2)
 plt.plot(tsim[1:], za[1:], label='Measurement', linewidth=.4, linestyle='--')
 plt.legend()
-plt.xlabel('Time')
-plt.ylabel('Value')
-plt.title('Position of mass 1, measuring mass 1')
-plth.set_y_axis_limits(np.min(xua[0, :]), np.max(xua[0, :]), 20)
+plt.xlabel('Time (s)')
+plt.ylabel('Position (units)')
+plt.title('Position of mass 1 given measurements of mass 1')
+plth.set_y_axis_limits(np.min(xua[0, :]), np.max(xua[0, :]), 10)
+plt.grid()
 
 sig_q5 = np.sqrt(Pua[8,8,:])
 plt.figure()
@@ -105,9 +107,10 @@ plt.plot(tsim, xua[8, :], label='Estimated Position', linewidth=2)
 plt.fill_between(tsim, xua[8, :] - 2*sig_q5, xua[8,:] + 2*sig_q5, label = r"$2\sigma$ Bound", color='purple', alpha=0.3)
 plt.plot(tsim, X_noisy[8, :], label='True Position', linewidth=2)
 plt.legend()
-plt.xlabel('Time')
-plt.ylabel('Value')
-plt.title('Position of mass 5, measuring mass 1')
+plt.xlabel('Time (s)')
+plt.ylabel('Position (units)')
+plt.title('Position of mass 5 given measurements of mass 1')
+plth.set_y_axis_limits(np.min(xua[8, :]), np.max(xua[8, :]), 30)
+plt.grid()
 
-plt.rcParams.update({'font.size': 20})
 plt.show()
